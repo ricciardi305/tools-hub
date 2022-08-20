@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import { createToolService } from "../../src/services/Tools/createTool.service";
-import { dbConnect, dbDestroy } from "../helpers/dbHandler";
+import { createToolService } from "../../../src/services/Tools/createTool.service";
+import { dbConnect, dbDestroy } from "../../helpers/dbHandler";
 
 describe("Create an tool", () => {
     let connection: DataSource;
