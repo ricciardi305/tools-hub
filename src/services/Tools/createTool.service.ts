@@ -11,15 +11,15 @@ export const createToolService = async ({
 }: ToolCreation) => {
     const toolsRepository = AppDataSource.getRepository(Tool);
 
-    try {
-        const newTool = new Tool(title, link, description, tags);
+    const toolAlreadyExists = await toolsRepository.findOneBy({ link });
 
-        await toolsRepository.save(newTool);
-
-        return newTool;
-    } catch (err) {
-        if (err instanceof AppError) {
-            throw new AppError(404, "This tool already exists");
-        }
+    if (toolAlreadyExists) {
+        throw new AppError(404, "This tool already exists");
     }
+
+    const newTool = new Tool(title, link, description, tags);
+
+    await toolsRepository.save(newTool);
+
+    return newTool;
 };
