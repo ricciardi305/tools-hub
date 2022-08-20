@@ -1,0 +1,14 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tools HUB",
+        "description": "Essa API tem como objetivo reservar e manipular informações das ferramentas cadastradas.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "API de test"
+        }
+    ]
+}
