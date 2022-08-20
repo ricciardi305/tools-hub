@@ -8,7 +8,7 @@ export class Tool {
     @Column({ nullable: false, length: 128 })
     title: string;
 
-    @Column({ nullable: false, length: 256 })
+    @Column({ nullable: false, length: 256, unique: true })
     link: string;
 
     @Column({ type: "text", nullable: false })
