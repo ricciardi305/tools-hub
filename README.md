@@ -10,3 +10,5 @@ Install the project dependencies
 
 Starting the server in the development environment
 - `yarn dev`
+
+Documentation in [localhost](http://localhost:3000/api-docs/)
