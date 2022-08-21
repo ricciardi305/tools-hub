@@ -25,5 +25,5 @@ export const loginService = async ({ email, password }: UserCreation) => {
         { expiresIn: "24h" }
     );
 
-    return { AcessToken: token };
+    return { AccessToken: token };
 };

@@ -14,7 +14,7 @@ const devDataSourceOptions: DataSourceOptions = {
 
 const testDataSourceOptions: DataSourceOptions = {
     type: "sqlite",
-    database: ":memory",
+    database: "db.sqlite3",
     entities: ["src/entities/*/*.ts"],
     synchronize: true,
 };

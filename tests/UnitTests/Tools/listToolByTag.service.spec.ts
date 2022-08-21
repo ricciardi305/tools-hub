@@ -1,10 +1,9 @@
 import { DataSource } from "typeorm";
-import { Tool } from "../../../src/entities/Tools";
 import { createToolService } from "../../../src/services/Tools/createTool.service";
 import { listToolsByTag } from "../../../src/services/Tools/listToolByTag.service";
 import { dbConnect, dbDestroy } from "../../helpers/dbHandler";
 
-describe("Create all tools", () => {
+describe("Lists all tools that have the tag", () => {
     let connection: DataSource;
 
     beforeAll(async () => {

@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import { createToolService } from "../../../src/services/Tools/createTool.service";
 import { dbConnect, dbDestroy } from "../../helpers/dbHandler";
 
-describe("Create an tool", () => {
+describe("Create a tool", () => {
     let connection: DataSource;
 
     beforeAll(async () => {
