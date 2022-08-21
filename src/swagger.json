@@ -1,14 +1,159 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Tools HUB",
-        "description": "Essa API tem como objetivo reservar e manipular informações das ferramentas cadastradas.",
+        "title": "API Tools HUB",
+        "description": "Tools HUB is a tool management api",
         "version": "1.0.0"
     },
     "servers": [
         {
             "url": "http://localhost:3000",
-            "description": "API de test"
+            "description": "Test server"
         }
-    ]
+    ],
+    "paths": {
+        "/tools": {
+            "post": {
+                "summary": "Tool Registration",
+                "description": "This route will be responsible for the registration of the tools",
+                "tags": ["Tools"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tools"
+                            },
+                            "exmaples": {
+                                "tools": {
+                                    "value": {
+                                        "title": "Notion",
+                                        "link": "https://notion.so",
+                                        "description": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized.",
+                                        "tags": [
+                                            "organization",
+                                            "planning",
+                                            "collaboration",
+                                            "writing",
+                                            "calendar"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "A tool with the link provided already exists"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Tools"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Lists all registered tools",
+                "summary": "Tool List",
+                "tags": ["Tools"],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Tools"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tools{?tag}": {
+            "get": {
+                "description": "Lists the tools that have a given tag",
+                "summary": "Tool List",
+                "tags": ["Tools"],
+                "parameters": [
+                    {
+                        "name": "tag",
+                        "in": "path",
+                        "description": "A valid tag",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Tools"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "There are no tools with the given tag"
+                    }
+                }
+            }
+        },
+        "/tools/{id}": {
+            "delete": {
+                "description": "Delete a tool by id",
+                "summary": "Delete tool",
+                "tags": ["Tools"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Tool id",
+                        "required": true,
+                        "schema": {
+                            "type": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tool deleted sucessfully"
+                    },
+                    "404": {
+                        "description": "Tool not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Tools": {
+                "type": "object",
+                "properties": {
+                    "title": { "type": "string" },
+                    "link": { "type": "string" },
+                    "description": { "type": "string" },
+                    "tags": { "type": "array", "items": { "type": "string" } }
+                }
+            }
+        }
+    }
 }

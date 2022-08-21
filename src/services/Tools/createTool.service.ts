@@ -1,7 +1,7 @@
-import { AppDataSource } from "../../data-source";
 import { Tool } from "../../entities/Tools";
 import { AppError } from "../../errors/AppError";
 import { ToolCreation } from "../../interfaces/Tools";
+import toolsRepository from "../../repositories/toolsRepository";
 
 export const createToolService = async ({
     title,
@@ -9,12 +9,10 @@ export const createToolService = async ({
     description,
     tags,
 }: ToolCreation) => {
-    const toolsRepository = AppDataSource.getRepository(Tool);
-
     const toolAlreadyExists = await toolsRepository.findOneBy({ link });
 
     if (toolAlreadyExists) {
-        throw new AppError(404, "This tool already exists");
+        throw new AppError(400, "A tool with the link provided already exists");
     }
 
     const newTool = new Tool(title, link, description, tags);
