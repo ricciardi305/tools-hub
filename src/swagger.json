@@ -10,5 +10,67 @@
             "url": "http://localhost:3000",
             "description": "API de test"
         }
-    ]
+    ],
+    "paths": {
+        "/tools": {
+            "post": {
+                "summary": "Tool Registration",
+                "description": "This route will be responsible for registering the tools",
+                "tags": ["Tools"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tool"
+                            },
+                            "examples": {
+                                "tool": {
+                                    "value": {
+                                        "title": "Notion",
+                                        "link": "https://notion.so",
+                                        "description": "All in one tool to organize teams and ideas. Write, plan, collaborate, and get organized. ",
+                                        "tags": [
+                                            "organization",
+                                            "planning",
+                                            "collaboration",
+                                            "writing",
+                                            "calendar"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "This tool already exists"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Tools"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "Tools": {
+                    "type": "object",
+                    "properties": {
+                        "title": { "type": "string" },
+                        "link": { "type": "string" },
+                        "description": { "type": "string" },
+                        "tags": { "type": "array" }
+                    }
+                }
+            }
+        }
+    }
 }
