@@ -12,7 +12,7 @@ export const createToolService = async ({
     const toolAlreadyExists = await toolsRepository.findOneBy({ link });
 
     if (toolAlreadyExists) {
-        throw new AppError(400, "This tool already exists");
+        throw new AppError(400, "A tool with the link provided already exists");
     }
 
     const newTool = new Tool(title, link, description, tags);
