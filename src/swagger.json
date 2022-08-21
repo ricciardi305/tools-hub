@@ -141,6 +141,83 @@
                     }
                 }
             }
+        },
+        "/users": {
+            "post": {
+                "summary": "Create User",
+                "description": "User creation route",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            },
+                            "exmaples": {
+                                "user": {
+                                    "value": {
+                                        "email": "email@email.com",
+                                        "password": "strongPassword"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Users"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "This email already exists"
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "summary": "User Login",
+                "description": "User Login route",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            },
+                            "exmaples": {
+                                "user": {
+                                    "value": {
+                                        "email": "email@email.com",
+                                        "password": "strongPassword"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "value": {
+                                        "AccessToken": { "type": "string" }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -152,6 +229,13 @@
                     "link": { "type": "string" },
                     "description": { "type": "string" },
                     "tags": { "type": "array", "items": { "type": "string" } }
+                }
+            },
+            "Users": {
+                "type": "object",
+                "properties": {
+                    "email": { "type": "string" },
+                    "password": { "type": "string" }
                 }
             }
         }
