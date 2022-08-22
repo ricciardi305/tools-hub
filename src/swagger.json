@@ -17,6 +17,7 @@
                 "summary": "Tool Registration",
                 "description": "This route will be responsible for the registration of the tools",
                 "tags": ["Tools"],
+                "security": [{ "bearerAuth": [] }],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -237,6 +238,13 @@
                     "email": { "type": "string" },
                     "password": { "type": "string" }
                 }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }
