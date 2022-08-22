@@ -1,11 +1,18 @@
+import "express-async-errors";
 import express from "express";
+import { handleErrors } from "./errors/HandleErrors";
+import { useRoutes } from "./routes";
 import swaggerUI from "swagger-ui-express";
-// import swagerDocs from "./swagger.json";
+
+import swaggerDocs from "./swagger.json";
 
 const app = express();
 
 app.use(express.json());
-// app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swagerDocs));
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+
+useRoutes(app);
 
 app.get("/", (req, res) => {
     res.json({
@@ -13,5 +20,7 @@ app.get("/", (req, res) => {
         message: "Bem vindo a api Tools HUB",
     });
 });
+
+app.use(handleErrors);
 
 export { app };
