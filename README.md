@@ -5,10 +5,10 @@ Repository for BossaBox back end challenge
 
 ### After cloning the repository
 
-Install the project dependencies 
-- `yarn install`
+You need to have [docker](https://docs.docker.com/engine/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed on your environment
 
-Starting the server in the development environment
-- `yarn dev`
+ - Run the command `sudo docker-compose` up to start the application in the docker container
+ - Run the command `docker exec tools_hub yarn typeorm migration:run -d src/data-source.ts` to run the typeorm migrations
+ 
+You can access the api documentation at [localhost](http://localhost:3000/api-docs/)
 
-Documentation in [localhost](http://localhost:3000/api-docs/)
