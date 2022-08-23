@@ -11,3 +11,4 @@ You need to have [docker](https://docs.docker.com/engine/install/) and [docker-c
  - Run the command `docker exec tools_hub yarn typeorm migration:run -d src/data-source.ts` to run the typeorm migrations
  
 You can access the api documentation at [localhost](http://localhost:3000/api-docs/)
+
