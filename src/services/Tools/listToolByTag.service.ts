@@ -8,12 +8,9 @@ export const listToolsByTag = async (tag: any) => {
         value.tags.includes(tag)
     );
 
-    if(filteredToolsByTag.length == 0){
-        throw new AppError(404, "There are no tools with the given tag")
+    if (filteredToolsByTag.length == 0) {
+        throw new AppError(404, "There are no tools with the given tag");
     }
 
-    console.log(filteredToolsByTag);
-
     return filteredToolsByTag;
-
 };
