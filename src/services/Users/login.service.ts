@@ -5,13 +5,13 @@ import bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 
 export const loginService = async ({ email, password }: UserCreation) => {
-    const found = await userRepository.findOneBy({ email });
+    const foundUser = await userRepository.findOneBy({ email });
 
-    if (!found) {
+    if (!foundUser) {
         throw new AppError(404, "Invalid email or passowrd");
     }
 
-    const verifyPassword = bcrypt.compareSync(password, found.password);
+    const verifyPassword = bcrypt.compareSync(password, foundUser.password);
 
     if (!verifyPassword) {
         throw new AppError(404, "Invalid email or passowrd");
@@ -19,7 +19,7 @@ export const loginService = async ({ email, password }: UserCreation) => {
 
     const token = jwt.sign(
         {
-            id: found.id,
+            id: foundUser.id,
         },
         process.env.TOKEN_KEY as string,
         { expiresIn: "24h" }
