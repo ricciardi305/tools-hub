@@ -6,6 +6,8 @@
     <img src="https://img.shields.io/github/license/ricciardi305/challenge-bossabox"/>
     <img src="https://img.shields.io/github/stars/ricciardi305/challenge-bossabox"/>
     <img src="https://img.shields.io/github/forks/ricciardi305/challenge-bossabox"/>
+    <img src="https://img.shields.io/github/repo-size/ricciardi305/challenge-bossabox"/>
+    <img src="https://img.shields.io/github/last-commit/ricciardi305/challenge-bossabox"/>  
 </p>
 
 <h4 align="center">
