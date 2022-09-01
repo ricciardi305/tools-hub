@@ -16,10 +16,14 @@ services:
     api:
         container_name: tools_hub
         build: .
+        restart: always
         volumes:
             - .:/app
+            - ./src:/app/src
+            - ./nodemon.json:/app/nodemon.json
         depends_on:
             - db
+        command: bash -c "while !</dev/tcp/db/5432; do sleep 1; done; yarn migrate && yarn dev"
         ports:
             - "3000:3000"
 volumes:
